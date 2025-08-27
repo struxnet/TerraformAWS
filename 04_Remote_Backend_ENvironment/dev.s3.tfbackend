@@ -1,0 +1,5 @@
+# Just for practicing with backend configuration outside of the backend.tf
+bucket = "shah-terraform-state-bucket"
+key = "04-backends/dev/state.tfstate"
+region = "us-east-1"
+use_lockfile = true
