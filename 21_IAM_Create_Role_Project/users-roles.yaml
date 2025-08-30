@@ -1,0 +1,64 @@
+# =============================================================================
+# USER-ROLE CONFIGURATION FILE
+# =============================================================================
+# This YAML file defines the user accounts and their role assignments for the
+# IAM Role Management system. It serves as the single source of truth for
+# user permissions and role mappings.
+#
+# STRUCTURE:
+# users: List of user objects
+#   - username: String - The IAM username (must be unique)
+#     roles: Array - List of roles assigned to this user
+#
+# AVAILABLE ROLES:
+# - readonly: Read-only access to all AWS services
+# - admin: Full administrative access to all AWS services
+# - securityAudit: Security auditing and compliance access
+# - developer: Development-focused permissions (VPC, EC2, S3, Lambda, RDS)
+#
+# ROLE ASSIGNMENT RULES:
+# - Users can have multiple roles assigned
+# - Role combinations determine the effective permissions
+# - Users can only assume roles they are explicitly assigned
+# - Role assumption requires switching roles in the AWS console or CLI
+
+# User definitions with role assignments
+users:
+  # User: shah
+  # Assigned roles: securityAudit + developer
+  # Permissions: Security auditing capabilities + development service access
+  # Use case: Senior developer with security responsibilities
+- username: shah
+  roles: [securityAudit, developer]
+
+  # User: zaryab  
+  # Assigned roles: readonly
+  # Permissions: View-only access to all AWS services
+  # Use case: Junior team member, auditor, or external consultant
+- username: zaryab
+  roles: [readonly]
+
+  # User: ammar
+  # Assigned roles: developer
+  # Permissions: Full access to development-related AWS services
+  # Use case: Application developer working with compute, storage, and databases
+- username: ammar
+  roles: [developer]
+
+# TO ADD NEW USERS:
+# 1. Add a new user entry following the structure above
+# 2. Assign appropriate roles based on job function
+# 3. Run 'terraform plan' to review changes
+# 4. Run 'terraform apply' to create the user and role assignments
+#
+# TO MODIFY USER ROLES:
+# 1. Update the roles array for the target user
+# 2. Run 'terraform plan' to review permission changes
+# 3. Run 'terraform apply' to update role assignments
+#
+# SECURITY CONSIDERATIONS:
+# - Regularly review user role assignments
+# - Follow principle of least privilege
+# - Remove unused user accounts promptly
+# - Monitor role assumption activities through CloudTrail
+
