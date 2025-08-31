@@ -165,6 +165,8 @@ TerraformAWS/
    
    # Or jump to specific topic
    cd 21_IAM_Create_Role_Project
+
+   # change region in versions.tf. By default AWS Region is set to us-west-1 for all projects
    ```
 
 3. **Initialize and Deploy**
